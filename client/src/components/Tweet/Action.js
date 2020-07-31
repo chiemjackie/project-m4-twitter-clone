@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import UnstyledButton from "../UnstyledButton";
+import UnstyledButton from "./UnstyledButton";
 
 const Action = ({ color, size, onClick, children }) => {
   const [isHovered, setIsHovered] = React.useState(false);

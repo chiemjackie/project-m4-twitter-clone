@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Tweet from "./Tweet/index";
 import { TweetProvider } from "./Tweet/TweetContext";
-import styled from "styled-components";
 
 function HomeFeed() {
   const [homeFeed, setHomeFeed] = React.useState(null);
@@ -19,11 +18,13 @@ function HomeFeed() {
   if (status === "idle") {
     const { tweetIds, tweetsById } = homeFeed;
 
-    console.log(tweetsById);
+    // console.log(tweetsById);
+    // console.log(tweetIds);
 
     return (
-      <Tweets>
+      <div>
         {tweetIds.map((tweetID) => {
+          // console.log(tweetsById[tweetID]);
           const { displayName, handle, avatarSrc } = tweetsById[tweetID].author;
 
           const {
@@ -35,6 +36,12 @@ function HomeFeed() {
             timestamp,
           } = tweetsById[tweetID];
 
+          const media = tweetsById[tweetID].media[0];
+          // console.log(media);
+          let url = media !== undefined;
+          if (media) url = media.url;
+          // console.log(url);
+
           return (
             <TweetProvider
               key={tweetID}
@@ -43,22 +50,21 @@ function HomeFeed() {
               avatarSrc={avatarSrc}
               tweetContent={status}
               timestamp={timestamp}
-              isTweetLiked={isLiked}
-              isTweetRetweeted={isRetweeted}
-              numberLikes={numLikes}
-              numberRetweets={numRetweets}
+              isLiked={isLiked}
+              isRetweeted={isRetweeted}
+              likes={numLikes}
+              retweets={numRetweets}
+              tweetMedia={url}
             >
               <Tweet />
             </TweetProvider>
           );
         })}
-      </Tweets>
+      </div>
     );
   } else {
     return <div>Loading</div>;
   }
 }
-
-const Tweets = styled.div``;
 
 export default HomeFeed;

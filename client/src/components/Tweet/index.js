@@ -7,9 +7,14 @@ import { TweetContext } from "./TweetContext";
 import Stats from "./Stats";
 
 const Tweet = () => {
-  const { displayName, username, avatarSrc, tweetContents, date } = useContext(
-    TweetContext
-  );
+  const {
+    displayName,
+    username,
+    avatarSrc,
+    tweetContents,
+    date,
+    tweetMedia,
+  } = useContext(TweetContext);
 
   return (
     <Wrapper>
@@ -19,6 +24,11 @@ const Tweet = () => {
         avatarSrc={avatarSrc}
       />
       <TweetContents>{tweetContents}</TweetContents>
+      {tweetMedia && (
+        <TweetMediaContainer>
+          <TweetMedia src={tweetMedia} />
+        </TweetMediaContainer>
+      )}
       <Timestamp>{date}</Timestamp>
       <Divider />
       <Stats />
@@ -34,8 +44,6 @@ const Wrapper = styled.div`
   width: 580px;
   padding: 16px;
   text-align: left;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Ubuntu, "Helvetica Neue", sans-serif;
 `;
 
 const TweetContents = styled.div`
@@ -52,6 +60,18 @@ const Timestamp = styled.div`
 const Divider = styled.div`
   height: 1px;
   background: rgb(230, 236, 240);
+`;
+
+const TweetMediaContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 15px;
+`;
+
+const TweetMedia = styled.img`
+  max-width: 100%;
+  border-radius: 20px;
 `;
 
 export default Tweet;

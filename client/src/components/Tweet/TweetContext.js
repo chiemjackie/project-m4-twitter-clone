@@ -1,42 +1,52 @@
 import React, { useState, createContext } from "react";
 import moment from "moment";
 
-import avatar from "../../assets/logo.svg";
-
 export const TweetContext = createContext(null);
 
-export const TweetProvider = ({ children }) => {
-  const [likes, setLikes] = useState(460);
-  const [retweets, setRetweets] = useState(65);
-  const [isLiked, setIsLiked] = useState(false);
-  const [isRetweeted, setIsRetweeted] = useState(false);
-
-  const date = moment().format("LT - ll");
+export const TweetProvider = ({
+  children,
+  displayName,
+  handle,
+  avatarSrc,
+  tweetContent,
+  timestamp,
+  isLiked,
+  isRetweeted,
+  likes,
+  retweets,
+  tweetMedia,
+}) => {
+  const date = moment(timestamp).format("LT - ll");
 
   const handleLike = () => {
-    isLiked ? setLikes(likes - 1) : setLikes(likes + 1);
-    setIsLiked(!isLiked);
+    isLiked ? likes-- : likes++;
+    isLiked = !isLiked;
+    console.log(likes);
+    console.log(isLiked);
   };
 
   const handleRetweet = () => {
-    isRetweeted ? setRetweets(retweets - 1) : setRetweets(retweets + 1);
-    setIsRetweeted(!isRetweeted);
+    isRetweeted ? retweets-- : retweets++;
+    isRetweeted = !isRetweeted;
+    console.log(retweets);
+    console.log(isRetweeted);
   };
 
   return (
     <TweetContext.Provider
       value={{
-        tweetContents: "Where in the world am I?",
-        displayName: "Carmen Sandiego ✨",
-        username: "carmen-sandiego",
-        avatarSrc: avatar,
+        tweetContents: tweetContent,
+        displayName: displayName,
+        username: handle,
+        avatarSrc: avatarSrc,
         isLiked: isLiked,
         isRetweeted: isRetweeted,
         date: date,
-        likes,
-        retweets,
+        likes: likes,
+        retweets: retweets,
         handleLike,
         handleRetweet,
+        tweetMedia,
       }}
     >
       {children}
