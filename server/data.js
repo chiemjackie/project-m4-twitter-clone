@@ -170,7 +170,7 @@ My highlight has been coming back to work with my very own Palmy HQ 🤩`,
     timestamp: "2020-01-06T09:20:00+00:00",
     sortedTimestamp: "2020-01-06T09:20:00+00:00",
     likedBy: [],
-    retweetedBy: ["diplomog"],
+    retweetedBy: [],
     status: `JAS 39 Gripen`,
     media: [
       {

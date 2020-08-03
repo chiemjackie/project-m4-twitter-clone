@@ -10,26 +10,25 @@ export const TweetProvider = ({
   avatarSrc,
   tweetContent,
   timestamp,
-  isLiked,
-  isRetweeted,
-  likes,
-  retweets,
+  numLikes,
+  numRetweets,
   tweetMedia,
 }) => {
   const date = moment(timestamp).format("LT - ll");
 
+  const [isLiked, setIsLiked] = useState(false);
+  const [likes, setLikes] = useState(numLikes);
+  const [isRetweeted, setIsRetweeted] = useState(false);
+  const [retweets, setRetweets] = useState(numRetweets);
+
   const handleLike = () => {
-    isLiked ? likes-- : likes++;
-    isLiked = !isLiked;
-    console.log(likes);
-    console.log(isLiked);
+    isLiked ? setLikes(likes - 1) : setLikes(likes + 1);
+    setIsLiked(!isLiked);
   };
 
   const handleRetweet = () => {
-    isRetweeted ? retweets-- : retweets++;
-    isRetweeted = !isRetweeted;
-    console.log(retweets);
-    console.log(isRetweeted);
+    isRetweeted ? setRetweets(retweets - 1) : setRetweets(retweets + 1);
+    setIsRetweeted(!isRetweeted);
   };
 
   return (

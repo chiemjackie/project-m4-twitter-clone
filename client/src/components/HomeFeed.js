@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Tweet from "./Tweet/index";
 import { TweetProvider } from "./Tweet/TweetContext";
 
-function HomeFeed() {
+const HomeFeed = () => {
   const [homeFeed, setHomeFeed] = React.useState(null);
   const [status, setStatus] = React.useState("loading");
 
@@ -24,7 +24,7 @@ function HomeFeed() {
     return (
       <div>
         {tweetIds.map((tweetID) => {
-          // console.log(tweetsById[tweetID]);
+          console.log(tweetsById[tweetID]);
           const { displayName, handle, avatarSrc } = tweetsById[tweetID].author;
 
           const {
@@ -35,6 +35,7 @@ function HomeFeed() {
             numRetweets,
             timestamp,
           } = tweetsById[tweetID];
+          // console.log(numRetweets);
 
           const media = tweetsById[tweetID].media[0];
           // console.log(media);
@@ -52,8 +53,8 @@ function HomeFeed() {
               timestamp={timestamp}
               isLiked={isLiked}
               isRetweeted={isRetweeted}
-              likes={numLikes}
-              retweets={numRetweets}
+              numLikes={numLikes}
+              numRetweets={numRetweets}
               tweetMedia={url}
             >
               <Tweet />
@@ -65,6 +66,6 @@ function HomeFeed() {
   } else {
     return <div>Loading</div>;
   }
-}
+};
 
 export default HomeFeed;
