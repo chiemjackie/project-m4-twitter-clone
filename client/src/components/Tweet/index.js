@@ -44,6 +44,7 @@ const Wrapper = styled.div`
   width: 580px;
   padding: 16px;
   text-align: left;
+  border: none;
 `;
 
 const TweetContents = styled.div`

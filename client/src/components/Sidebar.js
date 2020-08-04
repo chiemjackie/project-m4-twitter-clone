@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 import { ReactComponent as Logo } from "../assets/logo.svg";
 import { FiHome, FiUser, FiBell, FiBookmark } from "react-icons/fi";
 import { COLORS } from "../constants";
+import { CurrentUserContext } from "./CurrentUserContext";
 
 const { primary } = COLORS;
 
-function Sidebar() {
+const Sidebar = () => {
+  const { currentUser } = useContext(CurrentUserContext);
+
   return (
     <NavBar>
       <li>
@@ -22,7 +25,11 @@ function Sidebar() {
       </NavItem>
       <NavItem>
         <FiUser className="icon" />
-        <StyledLink exact to="/profile/:profileId" activeClassName="active">
+        <StyledLink
+          exact
+          to={`/profile/${currentUser.handle}`}
+          activeClassName="active"
+        >
           Profile
         </StyledLink>
       </NavItem>
@@ -40,7 +47,7 @@ function Sidebar() {
       </NavItem>
     </NavBar>
   );
-}
+};
 
 const NavBar = styled.nav`
   position: relative;

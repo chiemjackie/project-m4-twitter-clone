@@ -2,13 +2,14 @@ import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import Sidebar from "./Sidebar";
 import HomeFeed from "./HomeFeed";
 import Notifications from "./Notifications";
 import Bookmarks from "./Bookmarks";
 import TweetDetails from "./TweetDetails";
-import Profile from "./Profile";
+import Profile from "./Profile/index";
 import { CurrentUserContext } from "./CurrentUserContext";
 
 function App() {
@@ -34,13 +35,13 @@ function App() {
               <Route exact path="/tweet/:tweetId">
                 <TweetDetails />
               </Route>
-              <Route exact path="/users/:profileId">
+              <Route exact path="/profile/:profileId">
                 <Profile />
               </Route>
             </Switch>
           </>
         ) : (
-          <div>Loading</div>
+          <CircularProgress />
         )}
       </Router>
     </Main>

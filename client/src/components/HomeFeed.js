@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Tweet from "./Tweet/index";
 import { TweetProvider } from "./Tweet/TweetContext";
 
@@ -18,13 +19,10 @@ const HomeFeed = () => {
   if (status === "idle") {
     const { tweetIds, tweetsById } = homeFeed;
 
-    // console.log(tweetsById);
-    // console.log(tweetIds);
-
     return (
       <div>
         {tweetIds.map((tweetID) => {
-          console.log(tweetsById[tweetID]);
+          // console.log(tweetsById[tweetID]);
           const { displayName, handle, avatarSrc } = tweetsById[tweetID].author;
 
           const {
@@ -35,13 +33,10 @@ const HomeFeed = () => {
             numRetweets,
             timestamp,
           } = tweetsById[tweetID];
-          // console.log(numRetweets);
 
           const media = tweetsById[tweetID].media[0];
-          // console.log(media);
           let url = media !== undefined;
           if (media) url = media.url;
-          // console.log(url);
 
           return (
             <TweetProvider
@@ -64,7 +59,7 @@ const HomeFeed = () => {
       </div>
     );
   } else {
-    return <div>Loading</div>;
+    return <CircularProgress />;
   }
 };
 
