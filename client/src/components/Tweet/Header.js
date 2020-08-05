@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Header = ({ displayName, username, avatarSrc }) => {
   return (
     <Wrapper>
-      <Avatar src={avatarSrc} />
-      <Name>
+      <AvatarWrapper to={`/profile/${username}`}>
+        <Avatar src={avatarSrc} />
+      </AvatarWrapper>
+      <Name to={`/profile/${username}`}>
         <DisplayName>{displayName}</DisplayName>
         <Username>@{username}</Username>
       </Name>
@@ -17,13 +20,15 @@ const Wrapper = styled.header`
   display: flex;
 `;
 
+const AvatarWrapper = styled(Link)``;
+
 const Avatar = styled.img`
   width: 48px;
   height: 48px;
   border-radius: 50%;
 `;
 
-const Name = styled.div`
+const Name = styled(Link)`
   flex: 1;
   display: flex;
   flex-direction: column;

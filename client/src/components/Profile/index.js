@@ -1,6 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
+// import styled from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import HomeFeed from "../HomeFeed";
 
@@ -31,7 +31,7 @@ const Profile = () => {
       location,
       numFollowers,
       numFollowing,
-      numLikes,
+      // numLikes,
     } = profileUser.profile;
 
     return (
