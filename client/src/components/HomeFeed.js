@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Tweet from "./Tweet/index";
 import { TweetProvider } from "./Tweet/TweetContext";
 
-const HomeFeed = () => {
-  const [homeFeed, setHomeFeed] = React.useState(null);
-  const [status, setStatus] = React.useState("loading");
+const HomeFeed = ({ from, profileId }) => {
+  const [homeFeed, setHomeFeed] = useState(null);
+  const [status, setStatus] = useState("loading");
 
   useEffect(() => {
     fetch("/api/me/home-feed")
@@ -19,45 +19,90 @@ const HomeFeed = () => {
   if (status === "idle") {
     const { tweetIds, tweetsById } = homeFeed;
 
-    return (
-      <div>
-        {tweetIds.map((tweetID) => {
-          // console.log(tweetsById[tweetID]);
-          const { displayName, handle, avatarSrc } = tweetsById[tweetID].author;
+    if (profileId) {
+      return (
+        <div>
+          {tweetIds.map((tweetID) => {
+            const { displayName, handle, avatarSrc } = tweetsById[
+              tweetID
+            ].author;
+            if (handle === profileId) {
+              const {
+                status,
+                isLiked,
+                isRetweeted,
+                numLikes,
+                numRetweets,
+                timestamp,
+              } = tweetsById[tweetID];
 
-          const {
-            status,
-            isLiked,
-            isRetweeted,
-            numLikes,
-            numRetweets,
-            timestamp,
-          } = tweetsById[tweetID];
+              const media = tweetsById[tweetID].media[0];
+              let url = media !== undefined;
+              if (media) url = media.url;
 
-          const media = tweetsById[tweetID].media[0];
-          let url = media !== undefined;
-          if (media) url = media.url;
+              return (
+                <TweetProvider
+                  key={tweetID}
+                  displayName={displayName}
+                  handle={handle}
+                  avatarSrc={avatarSrc}
+                  tweetContent={status}
+                  timestamp={timestamp}
+                  isLiked={isLiked}
+                  isRetweeted={isRetweeted}
+                  numLikes={numLikes}
+                  numRetweets={numRetweets}
+                  tweetMedia={url}
+                >
+                  <Tweet />
+                </TweetProvider>
+              );
+            }
+          })}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          {tweetIds.map((tweetID) => {
+            const { displayName, handle, avatarSrc } = tweetsById[
+              tweetID
+            ].author;
 
-          return (
-            <TweetProvider
-              key={tweetID}
-              displayName={displayName}
-              handle={handle}
-              avatarSrc={avatarSrc}
-              tweetContent={status}
-              timestamp={timestamp}
-              isLiked={isLiked}
-              isRetweeted={isRetweeted}
-              numLikes={numLikes}
-              numRetweets={numRetweets}
-              tweetMedia={url}
-            >
-              <Tweet />
-            </TweetProvider>
-          );
-        })}
-      </div>
-    );
+            const {
+              status,
+              isLiked,
+              isRetweeted,
+              numLikes,
+              numRetweets,
+              timestamp,
+            } = tweetsById[tweetID];
+
+            const media = tweetsById[tweetID].media[0];
+            let url = media !== undefined;
+            if (media) url = media.url;
+
+            return (
+              <TweetProvider
+                key={tweetID}
+                displayName={displayName}
+                handle={handle}
+                avatarSrc={avatarSrc}
+                tweetContent={status}
+                timestamp={timestamp}
+                isLiked={isLiked}
+                isRetweeted={isRetweeted}
+                numLikes={numLikes}
+                numRetweets={numRetweets}
+                tweetMedia={url}
+              >
+                <Tweet />
+              </TweetProvider>
+            );
+          })}
+        </div>
+      );
+    }
   } else {
     return <CircularProgress />;
   }

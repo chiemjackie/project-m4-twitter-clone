@@ -24,7 +24,7 @@ function App() {
             <Sidebar />
             <Switch>
               <Route exact path="/">
-                <HomeFeed />
+                <HomeFeed from="homefeed" profileId={undefined} />
               </Route>
               <Route exact path="/notifications">
                 <Notifications />

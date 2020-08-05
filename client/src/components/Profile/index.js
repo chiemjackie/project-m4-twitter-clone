@@ -2,8 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
-import { CurrentUserContext } from "../CurrentUserContext";
+import HomeFeed from "../HomeFeed";
 
 const Profile = () => {
   const { profileId } = useParams();
@@ -48,6 +47,7 @@ const Profile = () => {
         <div>{joined}</div>
         <div>{numFollowers}</div>
         <div>{numFollowing}</div>
+        <HomeFeed from="profile" profileId={handle} />
       </div>
     );
   } else {
