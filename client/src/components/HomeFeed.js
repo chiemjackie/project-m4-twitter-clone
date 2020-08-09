@@ -22,9 +22,9 @@ const HomeFeed = ({ from, profileId }) => {
     if (profileId) {
       return (
         <div>
-          {tweetIds.map((tweetID) => {
+          {tweetIds.map((tweetId) => {
             const { displayName, handle, avatarSrc } = tweetsById[
-              tweetID
+              tweetId
             ].author;
             if (handle === profileId) {
               const {
@@ -34,15 +34,16 @@ const HomeFeed = ({ from, profileId }) => {
                 numLikes,
                 numRetweets,
                 timestamp,
-              } = tweetsById[tweetID];
+              } = tweetsById[tweetId];
 
-              const media = tweetsById[tweetID].media[0];
+              const media = tweetsById[tweetId].media[0];
               let url = media !== undefined;
               if (media) url = media.url;
 
               return (
                 <TweetProvider
-                  key={tweetID}
+                  key={tweetId}
+                  tweetId={tweetId}
                   displayName={displayName}
                   handle={handle}
                   avatarSrc={avatarSrc}
@@ -64,9 +65,9 @@ const HomeFeed = ({ from, profileId }) => {
     } else {
       return (
         <div>
-          {tweetIds.map((tweetID) => {
+          {tweetIds.map((tweetId) => {
             const { displayName, handle, avatarSrc } = tweetsById[
-              tweetID
+              tweetId
             ].author;
 
             const {
@@ -76,15 +77,16 @@ const HomeFeed = ({ from, profileId }) => {
               numLikes,
               numRetweets,
               timestamp,
-            } = tweetsById[tweetID];
+            } = tweetsById[tweetId];
 
-            const media = tweetsById[tweetID].media[0];
+            const media = tweetsById[tweetId].media[0];
             let url = media !== undefined;
             if (media) url = media.url;
 
             return (
               <TweetProvider
-                key={tweetID}
+                key={tweetId}
+                tweetId={tweetId}
                 displayName={displayName}
                 handle={handle}
                 avatarSrc={avatarSrc}

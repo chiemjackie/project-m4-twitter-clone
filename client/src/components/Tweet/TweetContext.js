@@ -13,6 +13,7 @@ export const TweetProvider = ({
   numLikes,
   numRetweets,
   tweetMedia,
+  tweetId,
 }) => {
   const date = moment(timestamp).format("LT - ll");
 
@@ -46,6 +47,7 @@ export const TweetProvider = ({
         handleLike,
         handleRetweet,
         tweetMedia,
+        tweetId,
       }}
     >
       {children}

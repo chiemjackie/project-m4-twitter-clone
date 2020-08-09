@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Header = ({ displayName, username, avatarSrc }) => {
   return (
@@ -8,9 +8,9 @@ const Header = ({ displayName, username, avatarSrc }) => {
       <AvatarWrapper to={`/profile/${username}`}>
         <Avatar src={avatarSrc} />
       </AvatarWrapper>
-      <Name to={`/profile/${username}`}>
-        <DisplayName>{displayName}</DisplayName>
-        <Username>@{username}</Username>
+      <Name>
+        <DisplayName to={`/profile/${username}`}>{displayName}</DisplayName>
+        <Username to={`/profile/${username}`}>@{username}</Username>
       </Name>
     </Wrapper>
   );
@@ -20,7 +20,7 @@ const Wrapper = styled.header`
   display: flex;
 `;
 
-const AvatarWrapper = styled(Link)``;
+const AvatarWrapper = styled(NavLink)``;
 
 const Avatar = styled.img`
   width: 48px;
@@ -28,7 +28,7 @@ const Avatar = styled.img`
   border-radius: 50%;
 `;
 
-const Name = styled(Link)`
+const Name = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -36,13 +36,13 @@ const Name = styled(Link)`
   padding: 0px 16px;
 `;
 
-const DisplayName = styled.div`
+const DisplayName = styled(NavLink)`
   font-size: 15px;
   line-height: 20px;
   font-weight: bold;
 `;
 
-const Username = styled.div`
+const Username = styled(NavLink)`
   font-size: 15px;
   line-height: 20px;
   color: rgb(101, 119, 134);

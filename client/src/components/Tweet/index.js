@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 import Header from "./Header";
 import ActionBar from "./ActionBar";
@@ -8,6 +9,7 @@ import Stats from "./Stats";
 
 const Tweet = () => {
   const {
+    tweetId,
     displayName,
     username,
     avatarSrc,
@@ -23,16 +25,18 @@ const Tweet = () => {
         username={username}
         avatarSrc={avatarSrc}
       />
-      <TweetContents>{tweetContents}</TweetContents>
-      {tweetMedia && (
-        <TweetMediaContainer>
-          <TweetMedia src={tweetMedia} />
-        </TweetMediaContainer>
-      )}
-      <Timestamp>{date}</Timestamp>
-      <Divider />
-      <Stats />
-      <Divider />
+      <TweetContentsLink to={`/tweet/${tweetId}`}>
+        <TweetContents>{tweetContents}</TweetContents>
+        {tweetMedia && (
+          <TweetMediaContainer>
+            <TweetMedia src={tweetMedia} />
+          </TweetMediaContainer>
+        )}
+        <Timestamp>{date}</Timestamp>
+        <Divider />
+        <Stats />
+        <Divider />
+      </TweetContentsLink>
       <ActionBar />
       <Divider />
     </Wrapper>
@@ -40,12 +44,15 @@ const Tweet = () => {
 };
 
 const Wrapper = styled.div`
+  display: block;
   background: white;
-  width: 580px;
+  width: 600px;
   padding: 16px;
   text-align: left;
   border: none;
 `;
+
+const TweetContentsLink = styled(Link)``;
 
 const TweetContents = styled.div`
   font-size: 22px;
@@ -66,7 +73,6 @@ const Divider = styled.div`
 const TweetMediaContainer = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
   margin-bottom: 15px;
 `;
 
