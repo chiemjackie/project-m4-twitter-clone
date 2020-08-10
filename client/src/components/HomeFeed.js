@@ -5,7 +5,7 @@ import Tweet from "./Tweet/index";
 import { TweetProvider } from "./Tweet/TweetContext";
 import WriteTweet from "./WriteTweet";
 
-const HomeFeed = ({ from, profileId }) => {
+const HomeFeed = ({ profileId }) => {
   const [homeFeed, setHomeFeed] = useState(null);
   const [status, setStatus] = useState("loading");
 

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { Redirect } from "react-router-dom";
 
 import Sidebar from "./Sidebar";
 import HomeFeed from "./HomeFeed";
@@ -24,7 +25,7 @@ function App() {
             <Sidebar />
             <Switch>
               <Route exact path="/">
-                <HomeFeed from="homefeed" profileId={undefined} />
+                <HomeFeed profileId={undefined} />
               </Route>
               <Route exact path="/notifications">
                 <Notifications />
@@ -39,6 +40,7 @@ function App() {
                 <Profile />
               </Route>
             </Switch>
+            <Redirect to="/" />
           </>
         ) : (
           <CircularProgress />

@@ -31,7 +31,6 @@ const Profile = () => {
       location,
       numFollowers,
       numFollowing,
-      // numLikes,
     } = profileUser.profile;
 
     return (
@@ -47,7 +46,7 @@ const Profile = () => {
         <div>{joined}</div>
         <div>{numFollowers}</div>
         <div>{numFollowing}</div>
-        <HomeFeed from="profile" profileId={handle} />
+        <HomeFeed profileId={handle} />
       </div>
     );
   } else {
