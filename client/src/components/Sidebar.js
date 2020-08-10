@@ -50,7 +50,6 @@ const Sidebar = () => {
 };
 
 const NavBar = styled.nav`
-  position: relative;
   display: flex;
   flex-direction: column;
   height: 40vh;
@@ -68,16 +67,15 @@ const NavItem = styled.li`
     margin-right: 20px;
   }
   .active {
-    color: blue;
+    color: green;
   }
   &:hover {
     background-color: ${primary};
+    color: white;
   }
 `;
 
 const StyledLink = styled(NavLink)`
-  text-decoration: none;
-  color: black;
   font-weight: bold;
 `;
 

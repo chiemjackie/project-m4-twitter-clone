@@ -6,7 +6,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { Redirect } from "react-router-dom";
 
 import Sidebar from "./Sidebar";
-import HomeFeed from "./HomeFeed";
+import Feed from "./Feed";
 import Notifications from "./Notifications";
 import Bookmarks from "./Bookmarks";
 import TweetDetails from "./Tweet/TweetDetails";
@@ -25,7 +25,7 @@ function App() {
             <Sidebar />
             <Switch>
               <Route exact path="/">
-                <HomeFeed profileId={undefined} />
+                <Feed profileId={undefined} />
               </Route>
               <Route exact path="/notifications">
                 <Notifications />
@@ -39,8 +39,8 @@ function App() {
               <Route exact path="/profile/:profileId">
                 <Profile />
               </Route>
+              <Redirect to="/" />
             </Switch>
-            <Redirect to="/" />
           </>
         ) : (
           <CircularProgress />

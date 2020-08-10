@@ -75,7 +75,7 @@ const TextBox = styled.textarea`
   height: 200px;
   border: none;
   resize: none;
-  margin-top: 10px;
+  margin-top: 20px;
 `;
 
 const CharacterCount = styled.span`

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import styled from "styled-components";
 
 import Tweet from "./Tweet/index";
 import { TweetProvider } from "./Tweet/TweetContext";
 import WriteTweet from "./WriteTweet";
 
-const HomeFeed = ({ profileId }) => {
+const Feed = ({ profileId }) => {
   const [homeFeed, setHomeFeed] = useState(null);
   const [status, setStatus] = useState("loading");
 
@@ -23,13 +24,13 @@ const HomeFeed = ({ profileId }) => {
 
     if (profileId) {
       return (
-        <div>
+        <FeedWrapper>
           <WriteTweet />
           {tweetIds.map((tweetId) => {
             const { displayName, handle, avatarSrc } = tweetsById[
               tweetId
             ].author;
-            if (handle === profileId) {
+            while (handle === profileId) {
               const {
                 status,
                 isLiked,
@@ -63,11 +64,11 @@ const HomeFeed = ({ profileId }) => {
               );
             }
           })}
-        </div>
+        </FeedWrapper>
       );
     } else {
       return (
-        <div>
+        <FeedWrapper>
           <WriteTweet />
           {tweetIds.map((tweetId) => {
             const { displayName, handle, avatarSrc } = tweetsById[
@@ -106,7 +107,7 @@ const HomeFeed = ({ profileId }) => {
               </TweetProvider>
             );
           })}
-        </div>
+        </FeedWrapper>
       );
     }
   } else {
@@ -114,4 +115,8 @@ const HomeFeed = ({ profileId }) => {
   }
 };
 
-export default HomeFeed;
+const FeedWrapper = styled.div`
+  border: 1px solid lightgray;
+`;
+
+export default Feed;
