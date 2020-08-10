@@ -43,7 +43,7 @@ const Tweet = () => {
   );
 };
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   display: block;
   background: white;
   width: 600px;

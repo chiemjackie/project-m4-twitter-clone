@@ -22,8 +22,6 @@ function TweetDetails() {
       });
   }, []);
 
-  // console.log(currentTweet);
-
   if (status === "idle") {
     const {
       status,
@@ -33,8 +31,6 @@ function TweetDetails() {
       numLikes,
       numRetweets,
     } = currentTweet;
-
-    console.log(currentTweet);
 
     const { displayName, handle, avatarSrc } = currentTweet.author;
 
@@ -65,7 +61,7 @@ function TweetDetails() {
           <TweetContents>{status}</TweetContents>
           {media && (
             <TweetMediaContainer>
-              <TweetMedia src={media.url} />
+              <TweetMedia src={url} />
             </TweetMediaContainer>
           )}
           <Timestamp>{date}</Timestamp>

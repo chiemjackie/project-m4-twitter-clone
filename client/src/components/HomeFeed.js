@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
+
 import Tweet from "./Tweet/index";
 import { TweetProvider } from "./Tweet/TweetContext";
+import WriteTweet from "./WriteTweet";
 
 const HomeFeed = ({ from, profileId }) => {
   const [homeFeed, setHomeFeed] = useState(null);
@@ -22,6 +24,7 @@ const HomeFeed = ({ from, profileId }) => {
     if (profileId) {
       return (
         <div>
+          <WriteTweet />
           {tweetIds.map((tweetId) => {
             const { displayName, handle, avatarSrc } = tweetsById[
               tweetId
@@ -65,6 +68,7 @@ const HomeFeed = ({ from, profileId }) => {
     } else {
       return (
         <div>
+          <WriteTweet />
           {tweetIds.map((tweetId) => {
             const { displayName, handle, avatarSrc } = tweetsById[
               tweetId
